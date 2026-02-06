@@ -3,7 +3,7 @@
 ##
 
 ## Constants
-UPDATE_MILLIS = 1000
+UPDATE_MILLIS = 100
 
 ## Global vars
 running = False
@@ -38,7 +38,7 @@ def lap_reset_click():
 def update_display():
     global update_count
     update_count += 1
-
+    timer.config(text=str(update_count))
     root.after(UPDATE_MILLIS, update_display)
 
 
@@ -46,6 +46,7 @@ def update_display():
 # Add widgets
 # Create text field
 timer = tk.Label(root, text="00:00:00")
+
 timer.pack(pady=20) # Use the pack geometry manager to place the widget with padding
 
 # Create Buttons
