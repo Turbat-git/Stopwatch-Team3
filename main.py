@@ -20,7 +20,7 @@ async def timer():
     global interval
     global running
 
-    while running:
+    if running:
         await asyncio.sleep(.1)
 
         micro_seconds += time.time() - interval
@@ -36,6 +36,8 @@ async def timer():
         if minute_time >= 60:
             hour_time += 1
             minute_time -= 60
+
+        print(f"micro seconds: {seconds_time}")
 
         print(f"{hour_time}:{minute_time}:{seconds_time}")
 
@@ -56,6 +58,16 @@ def lap():
     pass
 
 async def main():
-    pass
+    global seconds_time
+    global micro_seconds
+
+    await start()
+    while seconds_time < 5:
+        await timer()
+    else:
+        await stop()
+
+    # await timer()
+
 
 asyncio.run(main())
