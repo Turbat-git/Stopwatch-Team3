@@ -9,6 +9,7 @@ hour_time = 0
 minute_time = 0
 seconds_time = 0
 micro_seconds = 0.0
+running = False
 
 
 async def timer():
@@ -36,6 +37,23 @@ async def timer():
 
     print(f"{hour_time}:{minute_time}:{seconds_time}")
 
+async def start():
+    global running
 
-while True:
-    asyncio.run(timer())
+    running = True
+
+async def stop():
+    global running
+
+    running = False
+
+def reset():
+    pass
+
+def lap():
+    pass
+
+async def main():
+    pass
+
+asyncio.run(main())
