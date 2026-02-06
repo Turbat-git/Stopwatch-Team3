@@ -18,24 +18,26 @@ async def timer():
     global minute_time
     global hour_time
     global interval
+    global running
 
-    await asyncio.sleep(.1)
+    while running:
+        await asyncio.sleep(.1)
 
-    micro_seconds += time.time() - interval
-    interval = time.time()
+        micro_seconds += time.time() - interval
+        interval = time.time()
 
-    # count up to next time interval
-    if micro_seconds >= 1:
-        seconds_time += 1
-        micro_seconds -= 1
-    if seconds_time >= 60:
-        minute_time += 1
-        seconds_time -= 60
-    if minute_time >= 60:
-        hour_time += 1
-        minute_time -= 60
+        # count up to next time interval
+        if micro_seconds >= 1:
+            seconds_time += 1
+            micro_seconds -= 1
+        if seconds_time >= 60:
+            minute_time += 1
+            seconds_time -= 60
+        if minute_time >= 60:
+            hour_time += 1
+            minute_time -= 60
 
-    print(f"{hour_time}:{minute_time}:{seconds_time}")
+        print(f"{hour_time}:{minute_time}:{seconds_time}")
 
 async def start():
     global running
