@@ -3,6 +3,8 @@ import time
 
 
 start_time = time.time()
+interval = time.time()
+
 hour_time = 0
 minute_time = 0
 seconds_time = 0
@@ -14,9 +16,12 @@ async def timer():
     global seconds_time
     global minute_time
     global hour_time
+    global interval
 
-    micro_seconds += 0.1
     await asyncio.sleep(.1)
+
+    micro_seconds += time.time() - interval
+    interval = time.time()
 
     # count up to next time interval
     if micro_seconds >= 1:
